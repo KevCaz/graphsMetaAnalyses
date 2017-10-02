@@ -1,0 +1,32 @@
+---
+title: "Rmarkdown integration"
+subtitle: "You better have a look at the website"
+author: Kevin Cazelles and Steve Vissault
+documentclass: eecslides
+babel-lang: english
+output:
+  beamer_presentation:
+    highlight: tango
+    includes:
+      in_header: header.tex
+---
+
+
+<!-- Below in the example they use on the Rmarkdown doc-website -->
+
+# Visualizing data
+
+
+# Why use R
+
+
+# Common plots in meta-analyses
+
+
+# Funnel plot from scratch
+
+
+# Let's practice
+
+
+# Let's have some fun
