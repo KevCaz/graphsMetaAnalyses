@@ -1,21 +1,41 @@
 ---
-title: "Use R to visualize you meta-analysis"
+title: "Use R to visualize the results of your meta-analysis"
 date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
-author: Kevin Cazelles, post-doc, McCann Lab
+author: 'Kevin Cazelles, post-doc, McCann Lab, University of Guelph [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/KevCaz/graphsMetaAnalyses)'
 # lang: french
 output:
-    ioslides_presentation:
-        incremental: true
-        widescreen: true
-        #logo: ./img/logo.png
+  ioslides_presentation:
+    incremental: true
+    widescreen: true
+    includes:
+      in_header: kcheader.html
+    github: KevCaz
+      #logo: ./img/logo.png
 ---
 
 
 
 
+```{r, results = "hide", echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  fig.align='center',
+  tidy=FALSE,
+  comment="R>",
+  size = 'small'
+)
+```
+
+
 # R to visualize your data  
 
-## why visualize your data and why use R to do it (~ 10 min)?
+## Why visualize your data?
+
+### A choice
+
+
+
+## Why use R to do it?
+
 
 Here we'll argue why use R for doing your plots:
 
@@ -24,6 +44,8 @@ Here we'll argue why use R for doing your plots:
   - work-flow (data are already in R)
   - base graph / ggplot2 / web graphs (interacting)
   - code / reproducible
+
+  <i class="fa fa-github" aria-hidden="true"></i>
 
 
 # Common plots used in meta-analyses (~ 20 min)
@@ -76,13 +98,13 @@ we'll show a couple of plots such as:
 
 ## Useful links
 
-- task view: https://cran.r-project.org/web/views/Spatial.html
-- blog R-spatial: http://r-spatial.org/
-- a nice introduction: http://rspatial.org/intr/index.html
-- [sf](http://r-spatial.github.io/sf/)
-- [create shapefile on line](http://geojson.io/)
-- [free data at country level](http://www.diva-gis.org/gdata)
-- find more data with [this list](https://freegisdata.rtwilson.com/)
+- task view: https://cran.r-project.org/web/views/MetaAnalysis.html
+- at least 3 books:
+
+  1. Chen, Ding-Geng, and Karl E. Peace. [Applied Meta-Analysis with R](https://www.crcpress.com/Applied-Meta-Analysis-with-R/Chen-Peace/p/book/9781466505995). Chapman & Hall/CRC Biostatistics Series. Boca Raton: CRC Press/Taylor & Francis Group, 2013.  
+
+  2. Schwarzer, Guido, James R. Carpenter, and Gerta Rücker. [Meta-Analysis with R](http://www.springer.com/us/book/9783319214153). Use R! Cham: Springer International Publishing, 2015. https://doi.org/10.1007/978-3-319-21416-0.
+
 
 
 # That's all folks

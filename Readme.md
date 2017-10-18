@@ -1,10 +1,24 @@
 # MetaGraph
 
-Repository for the QCBS event on metaAnalyses - the graphical part.
+Repository for the [QCBS meta-analysis workshop](http://qcbs.ca/wiki/meta-analysis-workshop) -- the graphical part.
 
 See Outline
 
 ## Packages required
 
-- metafor
-- ggplot2
+### for the meta-analyses
+
+- `meta`
+- `metafor`
+- `ggplot2`
+
+using a single line of code:
+
+```r
+install.packages(c('meta', 'metafor', 'ggplot2'))
+```
+
+
+### To reproduce the slideshow
+
+- `rmarkdown` (and dependencies)
