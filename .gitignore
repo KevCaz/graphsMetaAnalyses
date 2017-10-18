@@ -1,5 +1,9 @@
+# meta-r-book
+meta-rbook-examples/
+
 # pdf
 *.pdf
+
 
 # History files
 .Rhistory

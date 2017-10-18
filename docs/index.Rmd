@@ -152,6 +152,11 @@ mapview(elvBtn)
 ### A large community
 
 
+## Why use R to do it?
+
+<div class="centered">
+![](img/extRcover.jpg){width=50%}
+</div>
 
 
 
@@ -163,20 +168,37 @@ mapview(elvBtn)
 
 
 
-# Common plots used in meta-analyses (~ 20 min)
+
+# Common plots used in meta-analyses
 
 ## Briefly
 
-Here we'll review the common plots found in meta-analyses as well as the R packages one can use to create them:
+<!-- let's aadd a link by figures -->
 
   - histogram effect size / number of studies   
-  - Funnel with Trim and Fill:   http://www.metafor-project.org/doku.php/plots:funnel_plot_with_trim_and_fill   
-  - regression effect side against and a relevant factor    
-  - `metafor` package   
+  - Funnel with Trim and Fill [<i class="fa fa-external-link" aria-hidden="true"></i>](http://www.metafor-project.org/doku.php/plots:funnel_plot_with_trim_and_fill)  
+  - regression effect side against and a relevant factor       
+  - forest plot
   - authors contribution to the field   
+  - baujat plot
 
 
-# Funnel plot from scratch (~ 20 min)
+## R packages we'll use
+
+
+```{r forest, eval=FALSE, message=FALSE}
+library(meta)
+m <- metacont(Ne, Me, Se, Nc, Mc, Sc, studlab=paste(author, year), data=data1)
+forest(m, xlab="Maximum % fall in FEV1")
+```
+
+
+
+
+Fig. 1.3, page 14, Meta Analyse wih R
+
+
+# Funnel plot from scratch
 
 ## Funnel plot from scratch
 
@@ -191,22 +213,29 @@ During this section we'll try to create our own funnel plot:
   - landmarks
   - export your plot
 
-# Let's practice (~ 30 min)
-
-## reproduce one figure
-
-may be the figures from Vellend et al. 2014 in PNAS
 
 
-# Let's have some fun (~ 15 min)
+Wolfgang Viechtbauer author `metafor`
+Guido Schwarzer author of meta https://cran.r-project.org/web/packages/meta/meta.pdf
+
+# Let's practice
+
+## Reproduce the figures in Vellend et al. 2014
+
+
+# Let's have some fun
 
 ## WordCloud
+
+
+## Network of co-authors
 
 Here, I'll try to provide further insights. To do so,
 we'll show a couple of plots such as:
 
   - Wordcloud
   - Network of co-authors
+
 
 
 # Resources
@@ -216,7 +245,7 @@ we'll show a couple of plots such as:
 - task view: https://cran.r-project.org/web/views/MetaAnalysis.html
 - at least 3 books:
 
-  1. Chen, Ding-Geng, and Karl E. Peace. [Applied Meta-Analysis with R](https://www.crcpress.com/Applied-Meta-Analysis-with-R/Chen-Peace/p/book/9781466505995). Chapman & Hall/CRC Biostatistics Series. Boca Raton: CRC Press/Taylor & Francis Group, 2013.  
+  1. Chen, Ding-Geng, and Karl E. Peace. [Applied Meta-Analysis with R](https://www.crcpress.com/Applied-Meta-Analysis-with-R/Chen-Peace/p/book/9781466505995). Chapman & Hall/CRC Biostatistics Series. Boca Raton: CRC Press/Taylor & Francis Group, 2013.  + [companion website](Website http://portal.uni-freiburg.de/imbi/lehre/lehrbuecher/meta-analysis-with-r)
 
   2. Schwarzer, Guido, James R. Carpenter, and Gerta Rücker. [Meta-Analysis with R](http://www.springer.com/us/book/9783319214153). Use R! Cham: Springer International Publishing, 2015. https://doi.org/10.1007/978-3-319-21416-0.
 
@@ -225,12 +254,6 @@ we'll show a couple of plots such as:
 # That's all folks
 
 
-
-<!-- ## cool
-
-<div class="centered">
-This text is centered.
-</div>
 
 ## cool2
 
