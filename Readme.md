@@ -15,7 +15,7 @@ See Outline
 using a single line of code:
 
 ```r
-install.packages(c('meta', 'metafor', 'ggplot2'))
+install.packages(c('meta', 'metafor', 'networkD3', 'wordcloud2'))
 ```
 
 

@@ -88,8 +88,6 @@ Here we'll argue why use R for doing your plots:
   - base graph / ggplot2 / web graphs (interacting)
   - code / reproducible
 
-  <i class="fa fa-github" aria-hidden="true"></i>
-
 
 ## Why use R to do it?
 
@@ -169,72 +167,113 @@ mapview(elvBtn)
 
 
 
-# Common plots used in meta-analyses
+# Common plots used in meta-analyses with R
 
 ## Briefly
 
-<!-- let's aadd a link by figures -->
 
-  - histogram effect size / number of studies   
-  - Funnel with Trim and Fill [<i class="fa fa-external-link" aria-hidden="true"></i>](http://www.metafor-project.org/doku.php/plots:funnel_plot_with_trim_and_fill)  
-  - regression effect side against and a relevant factor       
-  - forest plot
-  - authors contribution to the field   
-  - baujat plot
+## R packages
+
+  - [click here kev](https://cran.r-project.org/web/views/MetaAnalysis.html)
 
 
 ## R packages we'll use
 
-
-```{r forest, eval=FALSE, message=FALSE}
-library(meta)
-m <- metacont(Ne, Me, Se, Nc, Mc, Sc, studlab=paste(author, year), data=data1)
-forest(m, xlab="Maximum % fall in FEV1")
-```
+- Guido Schwarzer author of [`meta`](https://cran.r-project.org/web/packages/meta/meta.pdf)
+- Schwarzer, Guido, James R. Carpenter, and Gerta Rücker. [Meta-Analysis with R](http://www.springer.com/us/book/9783319214153).
+- Wolfgang Viechtbauer author [`metafor`](https://cran.r-project.org/web/packages/metafor/metafor.pdf)
+- [click here kev](http://www.metafor-project.org/doku.php/plots)
 
 
 
 
-Fig. 1.3, page 14, Meta Analyse wih R
+
+
 
 
 # Funnel plot from scratch
 
 ## Funnel plot from scratch
 
-During this section we'll try to create our own funnel plot:
+```{r funnelplot, echo=FALSE, message=FALSE}
+library(metafor)
 
-  - par
-  - background
-  - axes
-  - points/lines
-  - titles
-  - legend
-  - landmarks
-  - export your plot
+### decrease margins so the full space is used
+par(mar=c(5,4,1,2))
+
+### fit random-effects model
+res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR")
+
+### carry out trim-and-fill analysis
+taf <- trimfill(res)
+
+### draw funnel plot with missing studies filled in
+funnel(taf)
+```
 
 
 
-Wolfgang Viechtbauer author `metafor`
-Guido Schwarzer author of meta https://cran.r-project.org/web/packages/meta/meta.pdf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Let's practice
 
 ## Reproduce the figures in Vellend et al. 2014
 
 
+
+
+
+
+
+
+
+
+
+
 # Let's have some fun
 
 ## WordCloud
 
+```{r wrodcloud, eval=FALSE, message=FALSE}
+library(wordcloud2)
+wordcloud2(demoFreq)
+wordcloud2(demoFreq, size = 2)
+```
+
+## WordCloud
+
+```{r wrodcloud2, echo=FALSE, message=FALSE}
+library(wordcloud2)
+wordcloud2(demoFreq[1:200,], color=rep(c("#8c8c8c", "#4c4e4f"), 100))
+```
+
 
 ## Network of co-authors
 
-Here, I'll try to provide further insights. To do so,
-we'll show a couple of plots such as:
+```{r network, echo=FALSE, message=FALSE}
+library(networkD3)
+Source <- c("A", "A", "A", "A", "B", "B", "C", "C", "D")
+Target <- c("B", "C", "D", "J", "E", "F", "G", "H", "I")
+NetworkData <- data.frame(Source, Target)
+# Create graph
+simpleNetwork(NetworkData)
+```
 
-  - Wordcloud
-  - Network of co-authors
+
+
 
 
 
@@ -242,9 +281,8 @@ we'll show a couple of plots such as:
 
 ## Useful links
 
-- task view: https://cran.r-project.org/web/views/MetaAnalysis.html
-- at least 3 books:
-
+- [task view on CRAN](https://cran.r-project.org/web/views/MetaAnalysis.html)
+- at least 2 books:
   1. Chen, Ding-Geng, and Karl E. Peace. [Applied Meta-Analysis with R](https://www.crcpress.com/Applied-Meta-Analysis-with-R/Chen-Peace/p/book/9781466505995). Chapman & Hall/CRC Biostatistics Series. Boca Raton: CRC Press/Taylor & Francis Group, 2013.  + [companion website](Website http://portal.uni-freiburg.de/imbi/lehre/lehrbuecher/meta-analysis-with-r)
 
   2. Schwarzer, Guido, James R. Carpenter, and Gerta Rücker. [Meta-Analysis with R](http://www.springer.com/us/book/9783319214153). Use R! Cham: Springer International Publishing, 2015. https://doi.org/10.1007/978-3-319-21416-0.
@@ -252,6 +290,16 @@ we'll show a couple of plots such as:
 
 
 # That's all folks
+
+
+<!-- URL <- paste0('https://cdn.rawgit.com/christophergandrud/networkD3/',
+               'master/JSONdata/energy.json')
+ energy <- jsonlite::fromJSON(URL)
+
+ # Plot
+ sankeyNetwork(Links = energy$links, Nodes = energy$nodes, Source = 'source',
+              Target = 'target', Value = 'value', NodeID = 'name',
+              units = 'TWh', fontSize = 12, nodeWidth = 30) -->
 
 
 
