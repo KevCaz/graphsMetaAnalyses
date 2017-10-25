@@ -10,7 +10,7 @@ output:
     includes:
       in_header: kcheader.html
     github: KevCaz
-      #logo: ./img/logo.png
+    # logo: ./img/logo.png
 ---
 
 
@@ -20,7 +20,7 @@ output:
 knitr::opts_chunk$set(
   fig.align='center',
   tidy=FALSE,
-  comment="R >",
+  comment="R>> ",
   size = 'small'
 )
 ```
@@ -125,14 +125,6 @@ Here we'll argue why use R for doing your plots:
 
 ## Why use R to do it?
 
-### Very easy to do it
-
-```{r exmap, eval=FALSE}
-library(raster)
-library(mapview)
-elvBtn = getData('alt', country='BTN', path='./assets/')
-mapview(elvBtn)
-```
 
 ## Why use R to do it?
 
@@ -169,6 +161,18 @@ mapview(elvBtn)
 
 # Common plots used in meta-analyses with R
 
+## What do you want/need to visualize
+
+- studies + results
+- aim?
+
+- effect size
+- risk ratio
+- influence of certain study/author/group/country
+
+
+## Use R
+
 
 ## R packages for meta-analyses
 
@@ -198,12 +202,6 @@ mapview(elvBtn)
 
 - [click here kev](http://www.metafor-project.org/doku.php/plots)
 
-
-## What do you want/need to visualize
-
-- effect size
-- risk ratio
-- influence of certain study/author/group/country
 
 
 ## Install packages
@@ -347,6 +345,8 @@ wordcloud2(demoFreq)
 wordcloud2(demoFreq, size = 2)
 ```
 
+https://github.com/inSileco/wordcloud/blob/master/ourWordcloud.R
+
 ## WordCloud
 
 ```{r wrodcloud2, echo=FALSE, message=FALSE}
@@ -366,7 +366,7 @@ NetworkData <- data.frame(Source, Target)
 simpleNetwork(NetworkData)
 ```
 
-
+igraph
 
 
 
