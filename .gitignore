@@ -1,5 +1,6 @@
 # meta-r-book
 meta-rbook-examples/
+docs/scripts
 
 # pdf
 *.pdf
