@@ -2,23 +2,25 @@
 
 Repository for the [QCBS meta-analysis workshop](http://qcbs.ca/wiki/meta-analysis-workshop) -- the graphical part.
 
-See Outline
 
-## Packages required
+## R packages required
 
 ### for the meta-analyses
 
 - `meta`
 - `metafor`
-- `ggplot2`
+
+### To reproduce the slideshow
+
+- `rmarkdown`
+- `mapview`
+- 'wordcloud2'
+- 'networkD3'
+- 'igraph'
+
 
 using a single line of code:
 
 ```r
-install.packages(c('meta', 'metafor', 'networkD3', 'wordcloud2'))
+install.packages(c('meta', 'metafor', 'networkD3', 'wordcloud2', 'mapview', 'rmarkdown', 'igraph'))
 ```
-
-
-### To reproduce the slideshow
-
-- `rmarkdown` (and dependencies)
