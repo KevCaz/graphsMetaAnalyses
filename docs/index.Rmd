@@ -259,8 +259,8 @@ taf <- trimfill(res)
 funnel(taf)
 ```
 
-## Funnel plot
 
+## Funnel plot -- version 2
 
 ```{r funnelplot2, echo=FALSE, message=FALSE}
 ### fit fixed-effects model
@@ -270,6 +270,7 @@ funnel(res, yaxis="vi", main="Sampling Variance")
 # funnel(res, yaxis="seinv", main="Inverse Standard Error")
 # funnel(res, yaxis="vinv", main="Inverse Sampling Variance")
 ```
+
 
 
 
@@ -335,14 +336,25 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 
 # Let's practice
 
-## Reproduce the figures in Vellend et al. 2014
+## Reproduce the figures in Vellend et al. 2013
+
+Paper is available on line [<i class="fa fa-external-link" aria-hidden="true"></i>](http://www.pnas.org/content/110/48/19456.abstract)
 
 
+## Figure 2
+
+<div class="centered">
+<img src='img/VellendFig2.png' width=600></img>
+</div>
+
+## Figure 3
 
 
-
-
-
+<div class="columns-2">
+<img src='img/VellendFig3.png' width=500></img>
+<br><br><br><br><br><br><br><br>
+<img src='img/captionFig3.png' width=500></img>
+</div>  
 
 
 
@@ -407,12 +419,3 @@ igraph
  sankeyNetwork(Links = energy$links, Nodes = energy$nodes, Source = 'source',
               Target = 'target', Value = 'value', NodeID = 'name',
               units = 'TWh', fontSize = 12, nodeWidth = 30) -->
-
-
-
-<!--
-<div class="columns-2">
-  - Bullet 1
-  - Bullet 2
-  - Bullet 3
-</div>  -->
