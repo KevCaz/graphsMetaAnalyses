@@ -162,7 +162,6 @@ mapview(elvBtn)
 
 ### A large community
 
-
 ## Why use R to do it?
 
 <div class="centered">
@@ -182,7 +181,29 @@ mapview(elvBtn)
 
 # Common plots used in meta-analyses with R
 
-## What do you want/need to visualize
+## What do we want/need to visualize?
+
+1. **Effect size**:
+  - log risk ratios
+  - log odds ratios
+  - risk differences
+  - mean differences,
+  - standardized mean differences
+  - ...
+
+2. **Number of study**:
+  - by author
+  - by region
+  - by species
+
+
+
+### Effect size
+
+https://en.wikipedia.org/wiki/Effect_size#Difference_family:_Effect_sizes_based_on_differences_between_means
+
+
+  - against
 
 - studies + results
 - aim?
@@ -202,24 +223,32 @@ mapview(elvBtn)
   - `install.packages("ctv"); ctv::install.views("MetaAnalysis")`
 
 
-## R packages for meta-analyses
+## Meta vs Metafor 
 
 - Guido Schwarzer author of [`meta`](https://cran.r-project.org/web/packages/meta/meta.pdf)
 
 - Schwarzer, Guido, James R. Carpenter, and Gerta Rücker. [Meta-Analysis with R](http://www.springer.com/us/book/9783319214153).
+
+<br><br>
 
 - Wolfgang Viechtbauer author [`metafor`](https://cran.r-project.org/web/packages/metafor/metafor.pdf)
 
 - [click here kev](http://www.metafor-project.org/doku.php/plots)
 
 
-## Problem
+## Meta vs Metafor
+
+
+
+
+
+## Problem!
 
 - Everything you need is online
 
 - A problem... just google it!
 
-- How can we help us?
+- **How can we help you?**
 
 - [click here kev](http://www.metafor-project.org/doku.php/plots)
 
@@ -254,6 +283,19 @@ res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR")
 
 ### carry out trim-and-fill analysis
 taf <- trimfill(res)
+```
+
+## Funnel plot
+
+```{r funnelplotb, echo=FALSE, message=FALSE}
+### decrease margins so the full space is used
+par(mar=c(5,4,1,2))
+
+### fit random-effects model
+res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR")
+
+### carry out trim-and-fill analysis
+taf <- trimfill(res)
 
 ### draw funnel plot with missing studies filled in
 funnel(taf)
@@ -268,6 +310,16 @@ res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR", method="FE")
 
 funnel(res, yaxis="vi", main="Sampling Variance")
 # funnel(res, yaxis="seinv", main="Inverse Standard Error")
+# funnel(res, yaxis="vinv", main="Inverse Sampling Variance")
+```
+
+## Funnel plot -- version 3
+
+```{r funnelplot2b, echo=FALSE, message=FALSE}
+### fit fixed-effects model
+res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR", method="FE")
+
+funnel(res, yaxis="seinv", main="Inverse Standard Error")
 # funnel(res, yaxis="vinv", main="Inverse Sampling Variance")
 ```
 

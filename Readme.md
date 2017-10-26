@@ -1,6 +1,6 @@
 # MetaGraph
 
-Repository for the [QCBS meta-analysis workshop](http://qcbs.ca/wiki/meta-analysis-workshop) -- the graphical part.
+Repository for the [QCBS meta-analysis workshop](http://qcbs.ca/wiki/meta-analysis-workshop) -- graphics. 
 
 
 ## R packages required
