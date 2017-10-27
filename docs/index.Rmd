@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
   comment="R>> ",
   size = 'small'
 )
+library(metafor)
 ```
 
 
@@ -179,41 +180,117 @@ mapview(elvBtn)
 
 
 
+
+
+
+
 # Common plots used in meta-analyses with R
 
 ## What do we want/need to visualize?
 
-1. **Effect size**:
-  - log risk ratios
-  - log odds ratios
-  - risk differences
+### **Effect size** [<i class="fa fa-external-link" aria-hidden="true"></i>](https://en.wikipedia.org/wiki/Effect_size#Difference_family:_Effect_sizes_based_on_differences_between_means)
+
+  - log risk ratios,
+  - log odds ratios,
   - mean differences,
-  - standardized mean differences
+  - standardized mean differences,
   - ...
 
-2. **Number of study**:
+### **Number of study**
+
   - by author
   - by region
   - by species
 
 
 
-### Effect size
+## Effect size -- Funnel plot
 
-https://en.wikipedia.org/wiki/Effect_size#Difference_family:_Effect_sizes_based_on_differences_between_means
-
-
-  - against
-
-- studies + results
-- aim?
-
-- effect size
-- risk ratio
-- influence of certain study/author/group/country
+```{r funnelplot0, echo=FALSE, message=FALSE}
+par(mar=c(5,4,1,2))
+res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR")
+taf <- trimfill(res)
+funnel(taf)
+funnel(taf)
+```
 
 
-## Use R
+## Effect size -- Radial plot
+
+```{r radial, echo=FALSE, message=FALSE}
+### adjust margins so the space is better used
+par(mar=c(5,4,0,2))
+### fit fixed-effects model
+res <- rma(yi, vi, data=dat.hackshaw1998, method="FE")
+### draw radial plot
+radial(res)
+```
+
+
+
+
+## Effect size -- Forest plot
+
+<div class="columns-2">
+<img src='img/VellendFig3.png' width=500></img>
+
+<br><br><br><br><br><br><br><br>
+<img src='img/captionFig3.png' width=500></img>
+Vellend *et. al* 2013
+</div>  
+
+
+## Effect size -- Forest plot
+
+```{r forestEx, echo=FALSE}
+### simulate some data
+set.seed(1987)
+k <- 100
+vi <- rchisq(k, df=1) * .03
+yi <- rnorm(k, rnorm(k, 0.5, 0.4), sqrt(vi))
+
+### fit RE model
+res <- rma(yi, vi)
+
+### create plot
+forest(yi, vi,
+       xlim=c(-2.5,3.5),        ### adjust horizontal plot region limits
+       subset=order(yi),        ### order by size of yi
+       slab=NA, annotate=FALSE, ### remove study labels and annotations
+       efac=0,                  ### remove vertical bars at end of CIs
+       pch=19,                  ### changing point symbol to filled circle
+       col="gray40",            ### change color of points/CIs
+       psize=2,                 ### increase point size
+       cex.lab=1, cex.axis=1,   ### increase size of x-axis title/labels
+       lty=c("solid","blank"))  ### remove horizontal line at top of plot
+
+### draw points one more time to make them easier to see
+points(sort(yi), k:1, pch=19, cex=0.5)
+
+### add summary polygon at bottom and text
+addpoly(res, mlab="", annotate=FALSE, cex=1)
+text(-2, -2, "RE Model", pos=4, offset=0, cex=1)
+```
+
+
+## Number of Study & effect size
+
+<div class="centered">
+<img src='img/VellendFig2.png' width=550></img>
+</div>
+
+Vellend *et al.* 2013
+
+
+## Number of Study & geography
+
+<br>
+<div class="centered">
+<img src='img/VellendFig1.png' width=950></img>
+</div>
+
+Vellend *et al.* 2013
+
 
 
 ## R packages for meta-analyses
@@ -223,7 +300,7 @@ https://en.wikipedia.org/wiki/Effect_size#Difference_family:_Effect_sizes_based_
   - `install.packages("ctv"); ctv::install.views("MetaAnalysis")`
 
 
-## Meta vs Metafor 
+## Meta vs Metafor -- support
 
 - Guido Schwarzer author of [`meta`](https://cran.r-project.org/web/packages/meta/meta.pdf)
 
@@ -236,13 +313,14 @@ https://en.wikipedia.org/wiki/Effect_size#Difference_family:_Effect_sizes_based_
 - [click here kev](http://www.metafor-project.org/doku.php/plots)
 
 
-## Meta vs Metafor
+## Meta vs Metafor -- workflow
+
+1. **meta**:
+
+2. **metafor**:
 
 
-
-
-
-## Problem!
+## So...
 
 - Everything you need is online
 
@@ -373,6 +451,7 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 - text
 
 
+# Questions?
 
 
 
@@ -388,19 +467,17 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 
 # Let's practice
 
-## Reproduce the figures in Vellend et al. 2013
 
-Paper is available on line [<i class="fa fa-external-link" aria-hidden="true"></i>](http://www.pnas.org/content/110/48/19456.abstract)
+## Reproduce 2 figures from Vellend *et al.* 2013
 
+<br><br>
 
-## Figure 2
+- Paper is available on line [<i class="fa fa-external-link" aria-hidden="true"></i>](http://www.pnas.org/content/110/48/19456.abstract)
 
-<div class="centered">
-<img src='img/VellendFig2.png' width=600></img>
-</div>
+- Data available on line as well [Dataset S1](http://www.pnas.org/lookup/suppl/doi:10.1073/pnas.1312779110/-/DCSupplemental/sd01.xls)
+
 
 ## Figure 3
-
 
 <div class="columns-2">
 <img src='img/VellendFig3.png' width=500></img>
@@ -408,6 +485,14 @@ Paper is available on line [<i class="fa fa-external-link" aria-hidden="true"></
 <img src='img/captionFig3.png' width=500></img>
 </div>  
 
+
+## Figure S2
+
+<div class="centered">
+<img src='img/VellendFigS2.png' width=950></img>
+</div>
+
+Vellend *et al.* 2013
 
 
 
@@ -453,7 +538,9 @@ igraph
 ## Useful links
 
 - [task view on CRAN](https://cran.r-project.org/web/views/MetaAnalysis.html)
-- at least 2 books:
+
+- 2 books:
+
   1. Chen, Ding-Geng, and Karl E. Peace. [Applied Meta-Analysis with R](https://www.crcpress.com/Applied-Meta-Analysis-with-R/Chen-Peace/p/book/9781466505995). Chapman & Hall/CRC Biostatistics Series. Boca Raton: CRC Press/Taylor & Francis Group, 2013.  + [companion website](Website http://portal.uni-freiburg.de/imbi/lehre/lehrbuecher/meta-analysis-with-r)
 
   2. Schwarzer, Guido, James R. Carpenter, and Gerta Rücker. [Meta-Analysis with R](http://www.springer.com/us/book/9783319214153). Use R! Cham: Springer International Publishing, 2015. https://doi.org/10.1007/978-3-319-21416-0.
