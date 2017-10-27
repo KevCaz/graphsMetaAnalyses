@@ -443,12 +443,15 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 
 ## Few tips
 
+- par()
 - Axis
 - Legend
 - points
 - lines
 - colors
 - text
+- exportation
+
 
 
 # Questions?
