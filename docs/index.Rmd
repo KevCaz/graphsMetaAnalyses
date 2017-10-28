@@ -27,7 +27,6 @@ library(metafor)
 ```
 
 
-
 # R to visualize your data  
 
 ## Why visualize your data?
@@ -92,13 +91,14 @@ Here we'll argue why use R for doing your plots:
 
 ## Why use R to do it?
 
-### Many ways to visualize
+### Different valuable options
 
 <div class="centered">
 ![](img/ways.png)
 </div>
 
 - The gridGraphics package [<i class="fa fa-file-pdf-o" aria-hidden="true"></i>](https://journal.r-project.org/archive/2015-1/murrell.pdf)  
+- base **VS** ggplot2
 - Web-based graphs
 
 
@@ -188,15 +188,14 @@ mapview(elvBtn)
 
 ## What do we want/need to visualize?
 
-### **Effect size** [<i class="fa fa-external-link" aria-hidden="true"></i>](https://en.wikipedia.org/wiki/Effect_size#Difference_family:_Effect_sizes_based_on_differences_between_means)
+### **Effect Size (ES)** [<i class="fa fa-external-link" aria-hidden="true"></i>](https://qcbs.ca/wiki/meta-analysis-workshop)
 
   - log risk ratios,
   - log odds ratios,
-  - mean differences,
-  - standardized mean differences,
-  - ...
+  - ...,
+  - non-standard ES
 
-### **Number of study**
+### **Studies**
 
   - by author
   - by region
@@ -213,20 +212,6 @@ taf <- trimfill(res)
 funnel(taf)
 funnel(taf)
 ```
-
-
-## Effect size -- Radial plot
-
-```{r radial, echo=FALSE, message=FALSE}
-### adjust margins so the space is better used
-par(mar=c(5,4,0,2))
-### fit fixed-effects model
-res <- rma(yi, vi, data=dat.hackshaw1998, method="FE")
-### draw radial plot
-radial(res)
-```
-
-
 
 
 ## Effect size -- Forest plot
@@ -273,6 +258,32 @@ text(-2, -2, "RE Model", pos=4, offset=0, cex=1)
 ```
 
 
+## Effect size -- Radial plot
+
+```{r radial, echo=FALSE, message=FALSE}
+### adjust margins so the space is better used
+par(mar=c(5,4,0,2))
+### fit fixed-effects model
+res <- rma(yi, vi, data=dat.hackshaw1998, method="FE")
+### draw radial plot
+radial(res)
+```
+
+
+## Effect size -- L'Abbé plot
+
+```{r labbe, echo=FALSE, message=FALSE}
+### decrease margins so the full space is used
+par(mar=c(5,4,1,2))
+### fit random-effects model
+res <- rma(ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg, measure="RR")
+ ### draw L'Abbé plot
+labbe(res)
+```
+
+
+
+
 ## Number of Study & effect size
 
 <div class="centered">
@@ -290,6 +301,7 @@ Vellend *et al.* 2013
 </div>
 
 Vellend *et al.* 2013
+
 
 
 
@@ -318,6 +330,7 @@ Vellend *et al.* 2013
 1. **meta**:
 
 2. **metafor**:
+
 
 
 ## So...
@@ -432,6 +445,11 @@ text(-4, 15, "Author(s) and Year",  pos=4)
 text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 ```
 
+## Pros and Cons
+
+
+
+
 
 # Custom your plot
 
@@ -441,17 +459,22 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 ![](img/ways.png)
 </div>
 
+
 ## Few tips
 
 - par()
-- Axis
-- Legend
-- points
-- lines
+- Axis()
+- Legend()
+- points()
+- lines()
+- text()
+- abline()
 - colors
-- text
+- multiplot
 - exportation
 
+
+## Example funnel plot
 
 
 # Questions?
