@@ -510,18 +510,26 @@ text(-4, 15, "Author(s) and Year",  pos=4)
 text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 ```
 
+
 ## Pros and Cons
 
+### Pros
+
+- do everything for you
+- good-looking plots with a few line of plot
 
 
+### Cons
 
+- standard ES
+- not fully customizable
 
 
 
 
 # Custom your plot
 
-## Which way I go?
+## Graphics or Grid?
 
 <div class="centered">
 ![](img/ways.png)
@@ -529,7 +537,35 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 
 [ggplot2](http://ggplot2.tidyverse.org/reference/)
 
+
 ## Few tips
+
+```{r forestplot}
+vecX <- 1:10
+vecY <- runif(lenth(vecX))
+```
+
+## Few tips
+
+```{r forestplot}
+plot(vecX, vecY)
+```
+
+## Few tips
+
+```{r forestplot}
+plot(vecX, vecY)
+```
+
+## Few tips
+
+```{r forestplot}
+plot(vecX, vecY)
+```
+
+
+
+
 
 - par()
 - axis()
