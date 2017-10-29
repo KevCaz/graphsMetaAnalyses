@@ -458,7 +458,7 @@ meta::forest(meta1)
 
 - Perform analysis: `rma()`
 
-- Plots: `funnel()`, 'forest()', 'labbe()', ...
+- Plots: `funnel()`, `forest()`, `labbe()`, ...
 
 
 
@@ -809,7 +809,7 @@ legend('topright', legend='mypoints', pch=19, col="#0f7aa2", bty='n')
 
 ## Example funnel plot
 
-```{r, customb}
+```{r, echo=FALSE, customb}
 par(las=1, mar=c(5,6,4,1), mgp=c(4,1,0))
 funnel(FEmodel, yaxis="vinv", main="Inverse Sampling Variance", col="#0f7aa2",
 back='white')
@@ -852,7 +852,7 @@ legend('topright', legend='mypoints', pch=19, col="#0f7aa2", bty='n')
 
 - Paper available [online](https://academic.oup.com/beheco/article/27/5/1269/1743508)
 
-- Data available on [Github](cool)
+- Data available on [Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/data/datRoca.csv)
 
 
 ## Roca *et al.* 2016
@@ -882,9 +882,7 @@ Vellend *et al.* 2013
 <img src='img/captionFig3.png' width=500></img>
 </div>  
 
-Vellend *et al.* 2013
-
-
+Vellend *et al.* 2013 **wrong data on GH**
 
 
 
@@ -915,13 +913,3 @@ Vellend *et al.* 2013
 
 
 # That's all folks
-
-
-<!-- URL <- paste0('https://cdn.rawgit.com/christophergandrud/networkD3/',
-               'master/JSONdata/energy.json')
- energy <- jsonlite::fromJSON(URL)
-
- # Plot
- sankeyNetwork(Links = energy$links, Nodes = energy$nodes, Source = 'source',
-              Target = 'target', Value = 'value', NodeID = 'name',
-              units = 'TWh', fontSize = 12, nodeWidth = 30) -->
