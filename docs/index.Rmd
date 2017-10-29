@@ -49,6 +49,10 @@ library(metafor)
 <!-- discuss about how to make it efficient / make your point -->
 
 
+## Data visualization
+
+[click here kev](http://buckets.peterbeshai.com/app/#/playerView/201935_2015)
+
 
 ## Why use R to do it?
 
@@ -120,10 +124,10 @@ Here we'll argue why use R for doing your plots:
 
 ## Why use R to do it?
 
-```{r arch, echo=FALSE, message=FALSE}
+```{r arch, echo=FALSE, message=FALSE, fig.height=5.5}
 lwdt = 6
 par(mar=c(0,0,0,0), lend=2)
-plot(c(0,15), c(0,15), axes=F, ann=F, type='n')
+plot(c(0,10), c(0,10), axes=F, ann=F, type='n')
 lines(c(5,5), c(3.5,8), col='grey60', lwd=lwdt)
 lines(c(5,8), c(3.5,3.5), col='grey60', lwd=lwdt)
 lines(c(8,8), c(3.5,6.5), col='grey60', lwd=lwdt)
@@ -171,6 +175,8 @@ mapview(elvBtn)
 
 
 
+<!-- What do you think? -->
+
 
 
 
@@ -202,6 +208,9 @@ mapview(elvBtn)
   - by species
 
 
+<!-- you want to explain difference / heterogeneity of ES trying to understand why and
+that's why we should use random effect -->
+<!-- temporal drift -->
 
 ## Effect size -- Funnel plot
 
@@ -275,6 +284,7 @@ radial(res)
 http://www.metafor-project.org/doku.php/plots:radial_plot
 
 
+
 ## Effect size -- L'Abbé plot
 
 ```{r labbe, echo=FALSE, message=FALSE}
@@ -286,6 +296,16 @@ res <- rma(ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg, measure="RR")
 labbe(res)
 ```
 
+http://www.metafor-project.org/doku.php/plots:labbe_plot
+
+
+## Effect size -- relevant categories
+
+<div class="centered">
+<img src='img/Fig1Proulx.jpeg' width=600></img>
+</div>
+
+Roca *et al.* 2016
 
 
 
@@ -386,7 +406,7 @@ Arguments:
 
 ### **meta**:
     - `metabin()` / `metagen()`
-    - `funnel`, `forest`, ..
+    - `funnel`, `forest`, ...
 
 ```r
 install.packages('meta')
@@ -442,7 +462,7 @@ meta::forest(meta1)
 
 
 
-## Metafor -- workflow
+## Metafor -- example
 
 ```{r metafor, eval=FALSE, message=FALSE}
 install.packages('metafor')
@@ -454,16 +474,72 @@ library('metafor')
 ```
 
 
+
 ## Metafor -- example
 
 ```r
-r<-c(0.5,0.6,0.4,0.2,0.7,0.45); n<-c(40,90,25,400,60,50);
-studynames<-c(1,2,3,4,5,6); b<-data.frame(r,n,studynames)
+r<-c(0.5,0.6,0.4,0.2,0.7,0.45)
+n<-c(40,90,25,400,60,50)
+studynames<-c(1,2,3,4,5,6)
+b<-data.frame(r,n,studynames)
 eszcor <- escalc(measure="ZCOR", ri=r, ni=n, data=b)
 FEmodel<-rma(yi=yi, vi=vi, data=eszcor, method="FE")
 #forest plot fixed-effect model: pooled effect size,
-forest(FEmodel); forest(FEmodel,transf=transf.ztor)
+forest(FEmodel)
 ```
+
+
+## Metafor -- example
+
+```{r, metaforExa}
+r<-c(0.5,0.6,0.4,0.2,0.7,0.45)
+n<-c(40,90,25,400,60,50)
+studynames<-c(1,2,3,4,5,6)
+b<-data.frame(r,n,studynames)
+```
+
+## Metafor -- example
+
+```{r, metaforExb}
+knitr::kable(head(b))
+```
+
+
+## Metafor -- example
+
+```{r, metaforExc}
+eszcor <- escalc(measure="ZCOR", ri=r, ni=n, data=b)
+class(eszcor)
+```
+
+## Metafor -- example
+
+```{r, metaforExd}
+FEmodel<-rma(yi=yi, vi=vi, data=eszcor, method="FE")
+class(FEmodel)
+```
+
+## Metafor -- example
+
+```{r, metaforExe}
+forest(FEmodel)
+```
+
+
+## Metafor -- example
+
+```{r, metaforExea}
+forest(FEmodel,transf=transf.ztor)
+```
+
+
+
+## Metafor -- example
+
+```{r, metaforExf}
+funnel(FEmodel)
+```
+
 
 
 
@@ -477,6 +553,7 @@ funnel(res, yaxis="vi", main="Sampling Variance")
 # funnel(res, yaxis="seinv", main="Inverse Standard Error")
 # funnel(res, yaxis="vinv", main="Inverse Sampling Variance")
 ```
+
 
 ## Funnel plot -- version 3
 
@@ -662,6 +739,15 @@ plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex
 ##
 
 ```{r tips14}
+par(las=1, xaxs='i')
+plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize)
+abline(lm(vecY~vecX), col=2)
+```
+
+
+##
+
+```{r tips15}
 par(las=1, xaxs='i', mfrow=c(2,2))
 for (i in 1:4){
   plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize)
@@ -671,7 +757,7 @@ for (i in 1:4){
 
 ##
 
-```{r tips15, eval=F}
+```{r tips16, eval=F}
 par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,1,1), oma=c(2,2,0,0))
 ##--
 plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
@@ -693,7 +779,7 @@ mtext(2, text='Variable', outer=T)
 
 ##
 
-```{r tips15b, echo=F}
+```{r tips16b, echo=F}
 par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,1,1), oma=c(3,3,0,0))
 ##--
 plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
@@ -717,7 +803,7 @@ mtext(2, text='Variable', outer=T, line=1.5)
 
 ##
 
-```{r tips16a}
+```{r tips17a}
 layout(matrix(c(2,1,0,3), 2), widths=c(1,.5), heights=c(.5,1))
 layout.show(3)
 ```
@@ -725,12 +811,26 @@ layout.show(3)
 
 ##
 
-```{r tips16b, echo=F}
+```r
 layout(matrix(c(2,1,0,3), 2), widths=c(1,.5), heights=c(.5,1))
 par(mar=c(4,4,1,1))
 plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
 ann=F)
-abline(lm(vecY~vecX), col=2)
+##--
+plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
+ann=F)
+##--
+plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
+ann=F)
+```
+
+##
+
+```{r tips17b, echo=F}
+layout(matrix(c(2,1,0,3), 2), widths=c(1,.5), heights=c(.5,1))
+par(mar=c(4,4,1,1))
+plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
+ann=F)
 ##--
 plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
 ann=F)
@@ -765,19 +865,37 @@ ann=F)
 # Let's practice
 
 
-## Reproduce 2 figures from Vellend *et al.* 2013
+## Reproduce figures from
 
-<br><br>
+<br>
+
+### Vellend *et al.* 2013
 
 - Paper is available on line [<i class="fa fa-external-link" aria-hidden="true"></i>](http://www.pnas.org/content/110/48/19456.abstract)
 
 - Data available on line as well [Dataset S1](http://www.pnas.org/lookup/suppl/doi:10.1073/pnas.1312779110/-/DCSupplemental/sd01.xls)
 
 
+### Roca *et al.* 2016
+
+- Paper available [online](https://academic.oup.com/beheco/article/27/5/1269/1743508)
+
+- Data available on [Github](cool)
+
+
+## Roca *et al.* 2016
+
+<div class="centered">
+<img src='img/Fig1Proulx.jpeg' width=600></img>
+</div>
+
+Roca *et al.* 2016
+
+
 ## Figure S2
 
 <div class="centered">
-<img src='img/VellendFigS2.png' width=950></img>
+<img src='img/VellendFigS2.png' width=900></img>
 </div>
 
 Vellend *et al.* 2013
@@ -792,6 +910,9 @@ Vellend *et al.* 2013
 <img src='img/captionFig3.png' width=500></img>
 </div>  
 
+Vellend *et al.* 2013
+
+
 
 
 
@@ -799,36 +920,10 @@ Vellend *et al.* 2013
 
 # Extra
 
-## WordCloud
-
-```{r wrodcloud, eval=FALSE, message=FALSE}
-library(wordcloud2)
-wordcloud2(demoFreq)
-wordcloud2(demoFreq, size = 2)
-```
-
-https://github.com/inSileco/wordcloud/blob/master/ourWordcloud.R
-
-## WordCloud
-
-```{r wrodcloud2, echo=FALSE, message=FALSE}
-library(wordcloud2)
-wordcloud2(demoFreq[1:200,], color=rep(c("#8c8c8c", "#4c4e4f"), 100))
-```
 
 
-## Network of co-authors
 
-```{r network, echo=FALSE, message=FALSE}
-library(networkD3)
-Source <- c("A", "A", "A", "A", "B", "B", "C", "C", "D")
-Target <- c("B", "C", "D", "J", "E", "F", "G", "H", "I")
-NetworkData <- data.frame(Source, Target)
-# Create graph
-simpleNetwork(NetworkData)
-```
 
-igraph
 
 
 
