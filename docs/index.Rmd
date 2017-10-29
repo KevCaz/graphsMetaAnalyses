@@ -730,10 +730,10 @@ layout(matrix(c(2,1,0,3), 2), widths=c(1,.5), heights=c(.5,1))
 par(mar=c(4,4,1,1))
 plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
 ann=F)
+abline(lm(vecY~vecX), col=2)
 ##--
 plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
 ann=F)
-abline(lm(vecY~vecX), col=2)
 ##--
 plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
 ann=F)
