@@ -184,7 +184,7 @@ mapview(elvBtn)
 
 
 
-# Common plots used in meta-analyses with R
+# Common plots used in meta-analyses
 
 ## What do we want/need to visualize?
 
@@ -210,8 +210,9 @@ par(mar=c(5,4,1,2))
 res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR")
 taf <- trimfill(res)
 funnel(taf)
-funnel(taf)
 ```
+
+http://www.metafor-project.org/doku.php/plots:funnel_plot_with_trim_and_fill
 
 
 ## Effect size -- Forest plot
@@ -257,6 +258,8 @@ addpoly(res, mlab="", annotate=FALSE, cex=1)
 text(-2, -2, "RE Model", pos=4, offset=0, cex=1)
 ```
 
+http://www.metafor-project.org/doku.php/plots:forest_plot_with_subgroups
+
 
 ## Effect size -- Radial plot
 
@@ -268,6 +271,8 @@ res <- rma(yi, vi, data=dat.hackshaw1998, method="FE")
 ### draw radial plot
 radial(res)
 ```
+
+http://www.metafor-project.org/doku.php/plots:radial_plot
 
 
 ## Effect size -- L'Abbé plot
@@ -305,11 +310,30 @@ Vellend *et al.* 2013
 
 
 
+
+
+
+
+
+
+# Common plots used in meta-analyses with R
+
+
 ## R packages for meta-analyses
 
   - [click here kev](https://cran.r-project.org/web/views/MetaAnalysis.html)
 
   - `install.packages("ctv"); ctv::install.views("MetaAnalysis")`
+
+
+## Meta vs Metafor -- briefly
+
+![](img/metaPdf.png)
+
+
+## Meta vs Metafor -- briefly
+
+![](img/metaforPdf.png)
 
 
 ## Meta vs Metafor -- support
@@ -325,27 +349,100 @@ Vellend *et al.* 2013
 - [click here kev](http://www.metafor-project.org/doku.php/plots)
 
 
-## Meta vs Metafor -- workflow
+
+## Meta -- workflow
 
 1. **meta**:
-
-2. **metafor**:
-
+    - `metabin()`
 
 
-## So...
+```
+Arguments:
 
-- Everything you need is online
+ event.e: Number of events in experimental group.
+     n.e: Number of observations in experimental group.
+ event.c: Number of events in control group.
+     n.c: Number of observations in control group.
+```
 
-- A problem... just google it!
 
-- **How can we help you?**
+## Meta -- workflow
+
+###  **meta**:
+    - `metabin()` / `metagen()`
+
+
+```
+Arguments:
+
+      TE: Estimate of treatment effect.
+    seTE: Standard error of treatment estimate.
+```
+
+
+
+
+## Meta -- workflow
+
+### **meta**:
+    - `metabin()` / `metagen()`
+    - `funnel`, `forest`, ..
+
+```r
+install.packages('meta')
+library(meta)
+data(Olkin95)
+# ?Olkin95
+meta1 <- metabin(event.e, n.e, event.c, n.c,
+                  data=Olkin95, subset=c(41,47,51,59),
+                  sm="RR", method="I",
+                  studlab=paste(author, year))
+
+forest(meta1)
+```
+
+
+## Meta -- workflow
+
+```{r forestmeta, echo=FALSE, results='asis'}
+data(Olkin95, package='meta')
+knitr::kable(head(Olkin95))
+```
+
+
+## Meta -- workflow
+
+
+```{r forestmetab, echo=FALSE}
+data(Olkin95, package='meta')
+meta1 <- meta::metabin(event.e, n.e, event.c, n.c,
+                  data=Olkin95, subset=c(41,47,51,59),
+                  sm="RR", method="I",
+                  studlab=paste(author, year))
+meta::forest(meta1)
+```
+
+
+
+
+
+## Metafor -- workflow
 
 - [click here kev](http://www.metafor-project.org/doku.php/plots)
 
 
 
-## Install packages
+## Metafor -- workflow
+
+- Calculate effect size: `escalc()`
+
+- Perform analysis: `rma()`
+
+- Plots: `funnel()`, 'forest()', 'labbe()', ...
+
+
+
+## Metafor -- workflow
 
 ```{r metafor, eval=FALSE, message=FALSE}
 install.packages('metafor')
@@ -356,41 +453,9 @@ library('metafor')
 library('metafor')
 ```
 
-## `rma()`
-
-```{r rma, eval=FALSE, message=FALSE}
-?rma
-```
 
 
-## Funnel plot
 
-```{r funnelplot, echo=FALSE, message=FALSE}
-### decrease margins so the full space is used
-par(mar=c(5,4,1,2))
-
-### fit random-effects model
-res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR")
-
-### carry out trim-and-fill analysis
-taf <- trimfill(res)
-```
-
-## Funnel plot
-
-```{r funnelplotb, echo=FALSE, message=FALSE}
-### decrease margins so the full space is used
-par(mar=c(5,4,1,2))
-
-### fit random-effects model
-res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR")
-
-### carry out trim-and-fill analysis
-taf <- trimfill(res)
-
-### draw funnel plot with missing studies filled in
-funnel(taf)
-```
 
 
 ## Funnel plot -- version 2
@@ -451,19 +516,23 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 
 
 
+
+
+
 # Custom your plot
 
-## Few tips
+## Which way I go?
 
 <div class="centered">
 ![](img/ways.png)
 </div>
 
+[ggplot2](http://ggplot2.tidyverse.org/reference/)
 
 ## Few tips
 
 - par()
-- Axis()
+- axis()
 - Legend()
 - points()
 - lines()
@@ -503,15 +572,6 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 - Data available on line as well [Dataset S1](http://www.pnas.org/lookup/suppl/doi:10.1073/pnas.1312779110/-/DCSupplemental/sd01.xls)
 
 
-## Figure 3
-
-<div class="columns-2">
-<img src='img/VellendFig3.png' width=500></img>
-<br><br><br><br><br><br><br><br>
-<img src='img/captionFig3.png' width=500></img>
-</div>  
-
-
 ## Figure S2
 
 <div class="centered">
@@ -522,8 +582,20 @@ Vellend *et al.* 2013
 
 
 
+## Figure 3
 
-# Let's have some fun
+<div class="columns-2">
+<img src='img/VellendFig3.png' width=500></img>
+<br><br><br><br><br><br><br><br>
+<img src='img/captionFig3.png' width=500></img>
+</div>  
+
+
+
+
+
+
+# Extra
 
 ## WordCloud
 
