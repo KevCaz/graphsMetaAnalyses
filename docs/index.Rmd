@@ -537,64 +537,9 @@ forest(FEmodel,transf=transf.ztor)
 ## Metafor -- example
 
 ```{r, metaforExf}
-funnel(FEmodel)
+funnel(FEmodel, yaxis="vinv", main="Inverse Sampling Variance")
 ```
 
-
-
-
-## Funnel plot -- version 2
-
-```{r funnelplot2, echo=FALSE, message=FALSE}
-### fit fixed-effects model
-res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR", method="FE")
-
-funnel(res, yaxis="vi", main="Sampling Variance")
-# funnel(res, yaxis="seinv", main="Inverse Standard Error")
-# funnel(res, yaxis="vinv", main="Inverse Sampling Variance")
-```
-
-
-## Funnel plot -- version 3
-
-```{r funnelplot2b, echo=FALSE, message=FALSE}
-### fit fixed-effects model
-res <- rma(yi, vi, data=dat.hackshaw1998, measure="OR", method="FE")
-
-funnel(res, yaxis="seinv", main="Inverse Standard Error")
-# funnel(res, yaxis="vinv", main="Inverse Sampling Variance")
-```
-
-
-
-
-
-## Forest plot
-
-```{r forestplot, echo=FALSE}
-### decrease margins so the full space is used
-par(mar=c(4,4,1,2))
-
-### calculate (log) risk ratios and corresponding sampling variances
-dat <- escalc(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg)
-
-### fit random-effects models
-res <- rma(yi, vi, data=dat, slab=paste(author, year, sep=", "))
-
-### cumulative meta-analysis (in the order of publication year)
-tmp <- cumul(res, order=order(dat$year))
-
-### cumulative forest plot
-forest(tmp, xlim=c(-4,2), at=log(c(0.125, 0.25, 0.5, 1, 2)),
-       atransf=exp, digits=c(2,3), cex=0.75)
-
-### switch to bold font
-par(cex=0.75, font=2)
-
-### add column headings to the plot
-text(-4, 15, "Author(s) and Year",  pos=4)
-text( 2, 15, "Risk Ratio [95% CI]", pos=2)
-```
 
 
 ## Pros and Cons
@@ -609,6 +554,7 @@ text( 2, 15, "Risk Ratio [95% CI]", pos=2)
 
 - standard ES
 - not fully customizable
+- not for ecologists
 
 
 
@@ -845,6 +791,32 @@ ann=F)
 
 
 ## Example funnel plot
+
+```{r, customa}
+funnel(FEmodel, yaxis="vinv", main="Inverse Sampling Variance")
+```
+
+
+## Example funnel plot
+
+```r
+par(las=1, mar=c(5,6,4,1), mgp=c(4,1,0))
+funnel(FEmodel, yaxis="vinv", main="Inverse Sampling Variance", col="#0f7aa2",
+back='white')
+legend('topright', legend='mypoints', pch=19, col="#0f7aa2", bty='n')
+```
+
+
+## Example funnel plot
+
+```{r, customb}
+par(las=1, mar=c(5,6,4,1), mgp=c(4,1,0))
+funnel(FEmodel, yaxis="vinv", main="Inverse Sampling Variance", col="#0f7aa2",
+back='white')
+legend('topright', legend='mypoints', pch=19, col="#0f7aa2", bty='n')
+```
+
+
 
 <!-- before after  -->
 
