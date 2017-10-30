@@ -15,21 +15,21 @@ I gave this talk October 30th, 2017.
 - `rmarkdown`
 - `mapview`
 - `wordcloud2`
-- `networkD3`
-- `igraph`
+- `visNetwork`
+- `bibtex`
 
 
 using a single line of code:
 
 ```r
-install.packages(c('meta', 'metafor', 'networkD3', 'wordcloud2', 'mapview', 'rmarkdown', 'igraph'))
+install.packages(c('meta', 'metafor', 'mapview', 'bibtex', 'rmarkdown', 'visNetwork','wordcloud2'))
 ```
 
 
 ## Changes after the QCBS talk (10-30-2017)
 
 - [X] use `mtext()` in a loop to add graph annotations in when creating multi-panels figure.
-- [ ] add KevCaz solution for Fig. 1 from Roca *et al.* (2016)
+- [X] add KevCaz solution for Fig. 1 from Roca *et al.* (2016)
 - [ ] add KevCaz solution for Fig. S2 from Vellend *et al.* (2013)
 - [ ] add wordcloud
 - [ ] add networks of co-authors

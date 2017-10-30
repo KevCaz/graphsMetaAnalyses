@@ -866,8 +866,7 @@ Figure 3 Vellend *et al.* 2013
 
 ## Roca *et al.* 2016 -- Solution
 
-Find my R script that reproduces this figure [here]([Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/figRoca.R)
-)
+Find the R script I created to reproduce this figure [here](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/figRoca.R)
 
 ## Roca *et al.* 2016 -- Solution
 
