@@ -1,21 +1,22 @@
-# MetaGraph
+# Tips to visualize your meta-analysis
 
-Repository for the [QCBS meta-analysis workshop](http://qcbs.ca/wiki/meta-analysis-workshop) -- graphics.
-I gave this talk October 30th, 2017.
+This repository includes the talk (as a `.Rmd` file) and all the R scripts I
+used for my meta-analysis visualization talk I gave during [the QCBS meta-analysis workshop](http://qcbs.ca/wiki/meta-analysis-workshop) on October 30th, 2017.
+
 
 ## R packages required
 
-### for the meta-analyses
+###  Meta-analysis packages
 
 - `meta`
 - `metafor`
 
-### To reproduce the slideshow
+### R packages required to reproduce the slideshow
 
+- `bibtex`
 - `rmarkdown`
 - `mapview`
 - `dplyr`
-- `wordcloud2`
 - `visNetwork`
 - `bibtex`
 
@@ -23,7 +24,7 @@ I gave this talk October 30th, 2017.
 using a single line of code:
 
 ```r
-install.packages(c('meta', 'metafor', 'mapview', 'bibtex', 'rmarkdown', 'visNetwork','wordcloud2'))
+install.packages(c('bibtex', 'dplyr', 'meta', 'metafor', 'mapview', 'rmarkdown', 'visNetwork'))
 ```
 
 
@@ -32,5 +33,4 @@ install.packages(c('meta', 'metafor', 'mapview', 'bibtex', 'rmarkdown', 'visNetw
 - [X] use `mtext()` in a loop to add graph annotations in when creating multi-panels figure.
 - [X] add KevCaz solution for Fig. 1 from Roca *et al.* (2016)
 - [X] add KevCaz solution for Fig. S2 from Vellend *et al.* (2013)
-- [X] add wordcloud
-- [ ] add networks of co-authors
+- [X] add networks of co-authors
