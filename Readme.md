@@ -1,7 +1,9 @@
 # Tips to visualize your meta-analysis
 
 This repository includes the talk (as a `.Rmd` file) and all the R scripts I
-used for my meta-analysis visualization talk I gave during [the QCBS meta-analysis workshop](http://qcbs.ca/wiki/meta-analysis-workshop) on October 30th, 2017.
+used for my meta-analysis visualization talk I gave during [the QCBS meta-analysis
+workshop](http://qcbs.ca/wiki/meta-analysis-workshop) with @SteveViss on October 30th, 2017.
+
 
 
 ## R packages required
