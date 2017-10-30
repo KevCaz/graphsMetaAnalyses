@@ -30,6 +30,6 @@ install.packages(c('meta', 'metafor', 'mapview', 'bibtex', 'rmarkdown', 'visNetw
 
 - [X] use `mtext()` in a loop to add graph annotations in when creating multi-panels figure.
 - [X] add KevCaz solution for Fig. 1 from Roca *et al.* (2016)
-- [ ] add KevCaz solution for Fig. S2 from Vellend *et al.* (2013)
+- [X] add KevCaz solution for Fig. S2 from Vellend *et al.* (2013)
 - [ ] add wordcloud
 - [ ] add networks of co-authors
