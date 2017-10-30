@@ -84,17 +84,6 @@ library(metafor)
 
 ## Why use R to do it?
 
-Here we'll argue why use R for doing your plots:
-
-  - visualizing data  
-  - what makes a good graph (some details)  
-  - work-flow (data are already in R)
-  - base graph / ggplot2 / web graphs (interacting)
-  - code / reproducible
-
-
-## Why use R to do it?
-
 ### Different valuable options
 
 <div class="centered">
@@ -161,8 +150,6 @@ elvBtn = getData('alt', country='BTN', path='./assets/')
 mapview(elvBtn)
 ```
 
-
-
 ## Why use R to do it?
 
 ### A large community
@@ -172,12 +159,6 @@ mapview(elvBtn)
 <div class="centered">
 ![](img/extRcover.jpg){width=50%}
 </div>
-
-
-
-<!-- What do you think? -->
-
-
 
 
 
@@ -211,6 +192,7 @@ mapview(elvBtn)
 <!-- you want to explain difference / heterogeneity of ES trying to understand why and
 that's why we should use random effect -->
 <!-- temporal drift -->
+
 
 ## Effect size -- Funnel plot
 
@@ -341,7 +323,7 @@ Vellend *et al.* 2013
 
 ## R packages for meta-analyses
 
-  - [click here kev](https://cran.r-project.org/web/views/MetaAnalysis.html)
+  - [click here](https://cran.r-project.org/web/views/MetaAnalysis.html)
 
   - `install.packages("ctv"); ctv::install.views("MetaAnalysis")`
 
@@ -366,14 +348,13 @@ Vellend *et al.* 2013
 
 - Wolfgang Viechtbauer author [`metafor`](https://cran.r-project.org/web/packages/metafor/metafor.pdf)
 
-- [click here kev](http://www.metafor-project.org/doku.php/plots)
+- [click here](http://www.metafor-project.org/doku.php/plots)
 
 
 
 ## Meta -- workflow
 
-1. **meta**:
-    - `metabin()`
+- `metabin()`
 
 
 ```
@@ -388,8 +369,9 @@ Arguments:
 
 ## Meta -- workflow
 
-###  **meta**:
-    - `metabin()` / `metagen()`
+
+- `metabin()`  
+- `metagen()`
 
 
 ```
@@ -398,7 +380,6 @@ Arguments:
       TE: Estimate of treatment effect.
     seTE: Standard error of treatment estimate.
 ```
-
 
 
 
@@ -547,14 +528,14 @@ funnel(FEmodel, yaxis="vinv", main="Inverse Sampling Variance")
 ### Pros
 
 - do everything for you
-- good-looking plots with a few line of plot
+- good-looking plots with few lines of code
 
 
 ### Cons
 
 - standard ES
 - not fully customizable
-- not for ecologists
+- not for ecologists?
 
 
 
@@ -697,6 +678,7 @@ abline(lm(vecY~vecX), col=2)
 par(las=1, xaxs='i', mfrow=c(2,2))
 for (i in 1:4){
   plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize)
+  mtext(3, at=2, text=LETTERS[i], line=.5, cex=1.2)
 }
 ```
 
@@ -704,44 +686,43 @@ for (i in 1:4){
 ##
 
 ```{r tips16, eval=F}
+par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,2,1), oma=c(3,3,0,0), mgp=c(1,0.8,0))
+##--
+for (i in 1:4){
+  plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol],
+    cex=vSize, ann=FALSE)
+  mtext(3, at=1, text=LETTERS[i], line=.5, cex=1.2)
+}
+##--
+mtext(1, text='Time', outer=T, line=1, cex=1.4)
+par(las=0)
+mtext(2, text='Variable', outer=T, line=1, cex=1.4)
+```
+
+##
 par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,1,1), oma=c(2,2,0,0))
 ##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
+for (i in 1:4){
+  plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol],
+    cex=vSize, ann=FALSE)
+  mtext(3, at=2, text=LETTERS[i], line=.5, cex=1.2)
+}
 ##--
 mtext(1, text='Time', outer=T)
 par(las=0)
 mtext(2, text='Variable', outer=T)
-```
-
-##
-
 ```{r tips16b, echo=F}
-par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,1,1), oma=c(3,3,0,0))
+par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,2,1), oma=c(3,3,0,0), mgp=c(1,0.8,0))
 ##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
+for (i in 1:4){
+  plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol],
+    cex=vSize, ann=FALSE)
+  mtext(3, at=1, text=LETTERS[i], line=.5, cex=1.2)
+}
 ##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-mtext(1, text='Time', outer=T)
-mtext(2, text='Variable', outer=T, line=1.5)
+mtext(1, text='Time', outer=T, line=1, cex=1.4)
+par(las=0)
+mtext(2, text='Variable', outer=T, line=1, cex=1.4)
 ```
 
 
@@ -758,31 +739,25 @@ layout.show(3)
 ##
 
 ```r
-layout(matrix(c(2,1,0,3), 2), widths=c(1,.5), heights=c(.5,1))
-par(mar=c(4,4,1,1))
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
+layout(matrix(c(1,2,0,3), 2), widths=c(1,.5), heights=c(.6,1))
+par(mar=c(2, 4, 2, 1), las=1)
+for (i in 1:3){
+  plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol],
+    cex=vSize, ann=FALSE)
+  mtext(3, at=1, text=LETTERS[i], line=.5, cex=1.2)
+}
 ```
 
 ##
 
 ```{r tips17b, echo=F}
-layout(matrix(c(2,1,0,3), 2), widths=c(1,.5), heights=c(.5,1))
-par(mar=c(4,4,1,1))
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
-##--
-plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol], cex=vSize,
-ann=F)
+layout(matrix(c(1,2,0,3), 2), widths=c(1,.5), heights=c(.6,1))
+par(mar=c(2, 4, 2, 1), las=1)
+for (i in 1:3){
+  plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol],
+    cex=vSize, ann=FALSE)
+  mtext(3, at=1, text=LETTERS[i], line=.5, cex=1.2)
+}
 ```
 
 
@@ -837,22 +812,25 @@ legend('topright', legend='mypoints', pch=19, col="#0f7aa2", bty='n')
 # Let's practice
 
 
-## Reproduce figures from
+## Reproduce figures from....
 
-<br>
 
-### Vellend *et al.* 2013
+### 1- Roca *et al.* 2016
+
+- Paper available [online](https://academic.oup.com/beheco/article/27/5/1269/1743508)
+
+- Data available on [Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/data/datRoca.csv)
+
+
+### 2- Vellend *et al.* 2013
 
 - Paper is available on line [<i class="fa fa-external-link" aria-hidden="true"></i>](http://www.pnas.org/content/110/48/19456.abstract)
 
 - Data available on line as well [Dataset S1](http://www.pnas.org/lookup/suppl/doi:10.1073/pnas.1312779110/-/DCSupplemental/sd01.xls)
 
 
-### Roca *et al.* 2016
 
-- Paper available [online](https://academic.oup.com/beheco/article/27/5/1269/1743508)
 
-- Data available on [Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/data/datRoca.csv)
 
 
 ## Roca *et al.* 2016
@@ -861,20 +839,20 @@ legend('topright', legend='mypoints', pch=19, col="#0f7aa2", bty='n')
 <img src='img/Fig1Proulx.jpeg' width=600></img>
 </div>
 
-Roca *et al.* 2016
+Figure 1 from Roca *et al.* 2016
 
 
-## Figure S2
+## Vellend *et al.* 2013
 
 <div class="centered">
 <img src='img/VellendFigS2.png' width=900></img>
 </div>
 
-Vellend *et al.* 2013
+Figure S2 Vellend *et al.* 2013
 
 
 
-## Figure 3
+## Vellend *et al.* 2013
 
 <div class="columns-2">
 <img src='img/VellendFig3.png' width=500></img>
@@ -882,7 +860,7 @@ Vellend *et al.* 2013
 <img src='img/captionFig3.png' width=500></img>
 </div>  
 
-Vellend *et al.* 2013 **wrong data on GH**
+Figure 3 Vellend *et al.* 2013
 
 
 
