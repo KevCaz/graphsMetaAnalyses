@@ -1,6 +1,6 @@
 ---
 title: 'Use R to visualize the results of your meta-analysis [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/KevCaz/graphsMetaAnalyses)'
-date: "`r paste0(format(Sys.time(), '%d %B %Y'))`"
+date: "October 29th, 2017"
 author: '**Kevin Cazelles**, University of Guelph & **Steve Vissault**, Université de Sherbrooke'
 # lang: french
 output:
@@ -700,17 +700,7 @@ mtext(2, text='Variable', outer=T, line=1, cex=1.4)
 ```
 
 ##
-par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,1,1), oma=c(2,2,0,0))
-##--
-for (i in 1:4){
-  plot(vecX, vecY, xlim=c(0,15)+.5, pch=19, col=c("#0f7aa2", '#a70d72')[vCol],
-    cex=vSize, ann=FALSE)
-  mtext(3, at=2, text=LETTERS[i], line=.5, cex=1.2)
-}
-##--
-mtext(1, text='Time', outer=T)
-par(las=0)
-mtext(2, text='Variable', outer=T)
+
 ```{r tips16b, echo=F}
 par(las=1, xaxs='i', mfrow=c(2,2), mar=c(2,2,2,1), oma=c(3,3,0,0), mgp=c(1,0.8,0))
 ##--
@@ -726,15 +716,12 @@ mtext(2, text='Variable', outer=T, line=1, cex=1.4)
 ```
 
 
-
-
 ##
 
 ```{r tips17a}
 layout(matrix(c(2,1,0,3), 2), widths=c(1,.5), heights=c(.5,1))
 layout.show(3)
 ```
-
 
 ##
 
@@ -852,6 +839,8 @@ Figure S2 Vellend *et al.* 2013
 
 
 
+<!--
+Next time maybe
 ## Vellend *et al.* 2013
 
 <div class="columns-2">
@@ -860,7 +849,7 @@ Figure S2 Vellend *et al.* 2013
 <img src='img/captionFig3.png' width=500></img>
 </div>  
 
-Figure 3 Vellend *et al.* 2013
+Figure 3 Vellend *et al.* 2013 -->
 
 
 
@@ -886,8 +875,50 @@ KevCaz
 
 
 
+## Figure S2 Vellend *et al.* 2013 -- Solution
+
+Find the R script I created to reproduce this figure [here](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/vellendFigS2.R)
+
+## Figure S2 Vellend *et al.* 2013 -- Solution
+
+```{r, echo=F, results='hide'}
+source('scrFigs/vellendFigS2.R')
+```
+
+<div class="columns-2">
+<br><br>
+<img src='img/vellendS2F.png' width=440></img>
+Roca *et al.* 2016
+
+<br>
+<img src='img/vellendfigS2.png' width=480></img>
+KevCaz
+</div>  
+
+
+
 
 # Extra
+
+## Network of co-authors
+
+```{r colaboNet, echo=F, results='hide'}
+# source('scrFigs/colaboNet.R')
+```
+
+To create the wordcloud found in the next slide:
+
+  1- data available on [Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/data/lab.bib);
+
+  2- R script available on [Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/colaboNet.R).
+
+
+
+##
+
+<iframe title="Network of co-authors" src="img/network.html" width="800" height="700">
+  <p>Your browser does not support iframes.</p>
+</iframe>
 
 
 
