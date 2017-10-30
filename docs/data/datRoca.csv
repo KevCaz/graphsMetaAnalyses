@@ -1,7 +1,7 @@
 "","categ","freq","mean","se"
-"1","small","low",2.1,0.7
+"1","small","low",2.2,0.7
 "2","small","high",-0.2,0.4
-"3","medium","low",1.8,0.2
-"4","medium","high",0.2,0.15
-"5","large","low",0.9,0.2
-"6","large","high",0.3,0.15
+"3","medium","low",1.6,0.28
+"4","medium","high",0.15,0.17
+"5","large","low",0.78,0.26
+"6","large","high",0.24,0.18

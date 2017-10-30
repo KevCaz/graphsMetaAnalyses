@@ -864,6 +864,28 @@ Figure 3 Vellend *et al.* 2013
 
 
 
+## Roca *et al.* 2016 -- Solution
+
+Find my R script that reproduces this figure [here]([Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/figRoca.R)
+)
+
+## Roca *et al.* 2016 -- Solution
+
+```{r, echo=F, results='hide'}
+source('scrFigs/figRoca.R')
+```
+
+<div class="columns-2">
+<br><br>
+<img src='img/Fig1Proulx.jpeg' width=460></img>
+Roca *et al.* 2016
+
+<br>
+<img src='img/figRoca1.png' width=460></img>
+KevCaz
+</div>  
+
+
 
 
 # Extra
