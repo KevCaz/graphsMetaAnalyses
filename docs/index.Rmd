@@ -857,6 +857,8 @@ Figure 3 Vellend *et al.* 2013 -->
 
 Find the R script I created to reproduce this figure [here](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/figRoca.R)
 
+Amanda Young kindly sent me [her version using ggplot2](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/figRoca_Young.R)
+
 ## Roca *et al.* 2016 -- Solution
 
 ```{r, echo=F, results='hide'}
@@ -873,6 +875,22 @@ Roca *et al.* 2016
 KevCaz
 </div>  
 
+
+## Roca *et al.* 2016 -- Solution
+
+```{r, echo=F, results='hide', message=FALSE}
+source('scrFigs/figRoca_Young.R')
+```
+
+<div class="columns-2">
+<br><br>
+<img src='img/Fig1Proulx.jpeg' width=460></img>
+Roca *et al.* 2016
+
+<br>
+<img src='img/figRoca_Young.png' width=420></img>
+Amanda Young
+</div>  
 
 
 ## Figure S2 Vellend *et al.* 2013 -- Solution

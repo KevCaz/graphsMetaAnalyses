@@ -13,7 +13,7 @@ workshop](http://qcbs.ca/wiki/meta-analysis-workshop) with @SteveViss on October
 - `meta`
 - `metafor`
 
-### R packages required to reproduce the slideshow
+### R packages required to reproduce the slideshow (including examples)
 
 - `bibtex`
 - `rmarkdown`
@@ -21,12 +21,15 @@ workshop](http://qcbs.ca/wiki/meta-analysis-workshop) with @SteveViss on October
 - `dplyr`
 - `visNetwork`
 - `bibtex`
+- `ggplot2`
+- `lemon`
 
 
 using a single line of code:
 
 ```r
-install.packages(c('bibtex', 'dplyr', 'meta', 'metafor', 'mapview', 'rmarkdown', 'visNetwork'))
+install.packages(c('bibtex', 'dplyr', 'meta', 'metafor', 'mapview', 'rmarkdown',
+  'visNetwork', 'ggplot2', 'lemon'))
 ```
 
 
