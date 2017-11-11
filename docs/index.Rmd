@@ -41,10 +41,10 @@ library(metafor)
 
 </div>
 
-- summarize information
-- check assumptions validity
 - many pieces of information at one glance
-- ease the understanding
+- explore your data
+- make your point
+
 
 <!-- discuss about how to make it efficient / make your point -->
 
@@ -897,6 +897,8 @@ Amanda Young
 
 Find the R script I created to reproduce this figure [here](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/scrFigs/vellendFigS2.R)
 
+
+
 ## Figure S2 Vellend *et al.* 2013 -- Solution
 
 ```{r, echo=F, results='hide'}
@@ -906,7 +908,7 @@ source('scrFigs/vellendFigS2.R')
 <div class="columns-2">
 <br><br>
 <img src='img/vellendS2F.png' width=440></img>
-Roca *et al.* 2016
+Vellend *et al.* 2013
 
 <br>
 <img src='img/vellendfigS2.png' width=480></img>
@@ -924,7 +926,7 @@ KevCaz
 # source('scrFigs/colaboNet.R')
 ```
 
-To create the wordcloud found in the next slide:
+To create the network that follows:
 
   1- data available on [Github](https://github.com/KevCaz/graphsMetaAnalyses/blob/master/docs/data/lab.bib);
 
